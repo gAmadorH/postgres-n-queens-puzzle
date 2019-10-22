@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  nQueensPuzzleDb:
+    image: postgres
+    container_name: n-queens-puzzle-db
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=nQueensPuzzle
+      - POSTGRES_PASSWORD=nQueensPuzzle
+      - POSTGRES_DB=nQueensPuzzle
+    volumes:
+      - ./db:/var/lib/postgresql
+      - ./log/postgre:/var/log/postgresql/
+      - ./build:/build/
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
